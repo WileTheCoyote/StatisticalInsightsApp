@@ -58,6 +58,8 @@ public class StatisticalInsights {
         numOfResultsInt = numOfResults.size();
         numOfResultsInt = numOfResultsInt - 1;
         
+        
+        System.out.println("Found :" + numOfResultsInt + " Results");
     
     }
     
