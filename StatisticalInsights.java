@@ -50,6 +50,14 @@ public class StatisticalInsights {
     
         System.out.println("Found link .. " + resultPageUrl);
         
+        int numOfResultsInt;
+        
+        Elements numOfResults = searchDoc.select("section#content.clearfix div.col.col12 > p");
+        
+        
+        numOfResultsInt = numOfResults.size();
+        numOfResultsInt = numOfResultsInt - 1;
+        
     
     }
     
