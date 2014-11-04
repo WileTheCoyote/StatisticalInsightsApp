@@ -26,17 +26,22 @@ public class StatisticalInsights {
         Scanner nameScanner = new Scanner(System.in);
         playerFirstName = nameScanner.nextLine();
         
+        
         System.out.print(" Last Name : ");
         Scanner lastNameScanner = new Scanner(System.in);
         playerLastName = lastNameScanner.nextLine();
-        
+       
         
         fullName = playerFirstName + " " + playerLastName;
         System.out.println("Searching for " + fullName + " ...");
+        
+        // closing scanners to avoid resource leak warning
+        nameScanner.close();
+        lastNameScanner.close();
         /****************************************************/
         
         /******************************************************
-         Here you will take the fullName and search it (sumbit
+         Here you will take the fullName and search it (submit
          a POST form), you will get a result page. Use result page
          URL to find player and their appropriate URL
          *****************************************************/
@@ -44,7 +49,7 @@ public class StatisticalInsights {
         resultPageUrl = "http://statsheet.com/mcb/players/search?s=" + playerFirstName + "+" + playerLastName + "&i=1";
 
         
-        // using JSoup to conncet to Result page form search
+        // using JSoup to connect to Result page form search
         Document searchDoc = Jsoup.connect(resultPageUrl).userAgent("Mozilla").timeout(6000).get();
             
     
@@ -54,12 +59,13 @@ public class StatisticalInsights {
         
         Elements numOfResults = searchDoc.select("section#content.clearfix div.col.col12 > p");
         
-        
         numOfResultsInt = numOfResults.size();
         numOfResultsInt = numOfResultsInt - 1;
+       
         
         
         System.out.println("Found :" + numOfResultsInt + " Results");
+        
     }
     
 
