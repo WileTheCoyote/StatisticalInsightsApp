@@ -1,3 +1,7 @@
+//Jake White
+//Tommy Hoffmann
+//Ryan Smith
+
 //package com.hascode.samples.jsoup;
 
 import java.io.IOException;
