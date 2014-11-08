@@ -17,7 +17,7 @@ import org.jsoup.nodes.Element;
 
 
 public class StatisticalInsights {
-	public static void main(final String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException {
         String playerFirstName = "empty";      // Argument 1
         String playerLastName = "empty";      // Argument 2
         String fullName = "empty" ;
@@ -35,8 +35,27 @@ public class StatisticalInsights {
         playerLastName = lastNameScanner.nextLine();
         
         
+        //Check for Spaces in name (turns out it doesnt make a difference...)
+        if(playerFirstName.indexOf(' ') >= 0){
+                //System.out.println("contains spaces");
+                //delete space
+                playerFirstName = playerFirstName.replace(" ","");
+                //System.out.println("new first name: " + playerFirstName);
+                //.split(' ').join('_')
+        }
+
+        if(playerLastName.indexOf(' ') >= 0){
+                //System.out.println("contains spaces");
+                //delete space
+                playerLastName = playerLastName.replace(" ","");
+                //System.out.println("new first name: " + playerFirstName);
+                //.split(' ').join('_')
+        }
+
+
         fullName = playerFirstName + " " + playerLastName;
         System.out.println("Searching for " + fullName + " ...");
+
         /****************************************************/
         
         /******************************************************
@@ -50,7 +69,11 @@ public class StatisticalInsights {
         
         // using JSoup to conncet to Result page form search
         Document searchDoc = Jsoup.connect(resultPageUrl).userAgent("Mozilla").timeout(6000).get();
-            
+        
+        //trying to validate that the website is up
+        Document searchDoc2 = Jsoup.connect("http://downforeveryoneorjustme.com/http://statsheet.com/").userAgent("Mozilla").timeout(6000).get();
+
+
     
         System.out.println("Found link .. " + resultPageUrl);
         
@@ -63,9 +86,16 @@ public class StatisticalInsights {
         numOfResultsInt = numOfResultsInt - 1;
         
         
-        System.out.println("Found :" + numOfResultsInt + " Results");
+        System.out.println("Found " + numOfResultsInt + " Results");
+
+        
+
+        if (numOfResultsInt == 0)
+        {
+            System.out.println("Player Not Found, Check Spelling");
+            System.exit(0);
+        }
     
-        // adding a test comment
     }
     
 
