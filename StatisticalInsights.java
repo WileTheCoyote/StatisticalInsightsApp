@@ -44,26 +44,32 @@ public class StatisticalInsights {
         int thresholdInt = 0;   // numberThreshold converted to int - deafault at 0
         int statCol = 2;           
 
-    /******************************* UNFINISHED ***************************************************************/
-        /* Assure statsheet.com is up */
-        // Elements numOfResults = searchDoc.select("section#content.clearfix div.col.col12 > p");
+    /*************************** Assure statsheet.com is running *********************************************************/
 
         Document searchDoc2 = Jsoup.connect("http://downforeveryoneorjustme.com/http://statsheet.com/").userAgent("Mozilla").timeout(6000).get();
 
-        //Element containsYN = searchDoc2.select("div#container");
+        Elements containsYN = searchDoc2.select("div#container");
+        String isSiteUpString = containsYN.toString();
 
-
-
-        // (text) :contains(not)"")
-        //:contains(text)
-
-        System.out.print(searchDoc2.select("div#container")); // NEED TO COMPLETE
+        // Use regex to parse result of downforeveryoneorjustme.com for word 'not' which indicates "it's not just you" regarding the sites status
+        Boolean isSiteUp = isSiteUpString.matches(".*not.*"); 
+        
         System.out.print('\n');
+        
+        if(isSiteUp)
+        {
+          System.out.print("Cannot connect to StatSheet.com");
+          System.exit(0);
+        }
+        else{System.out.print("... Connecting to StatSheet.com ...\n");}
+
+        
 
     /**********************************************************************************************************/
 
         /* Get command prompt arguments for Player's Name */
         /**************************************************/
+        System.out.print("\n");
         System.out.print(" First Name : ");
         Scanner nameScanner = new Scanner(System.in);
         playerFirstName = nameScanner.nextLine();
@@ -92,6 +98,7 @@ public class StatisticalInsights {
 
 
         fullName = playerFirstName + " " + playerLastName;
+        System.out.print('\n');
         System.out.println("Searching for " + fullName + " ...");
 
         /****************************************************/
@@ -146,13 +153,13 @@ public class StatisticalInsights {
                 numOfResultsInt = 1; // one result was indeed there
                 // Player Found - resultLinkString URL can be used
                 resultLinkString = resultPageUrl;
-                System.out.println("# of Search results - " + numOfResultsInt);
+                System.out.println("# of Search results: " + numOfResultsInt);
                 break;
             
             }
                
             
-            System.out.println("# of Search results - " + numOfResultsInt);
+            System.out.println("# of Search results: " + numOfResultsInt);
                 
             w = 1; // we not return to the top of the while loop
             
@@ -246,7 +253,8 @@ public class StatisticalInsights {
         
         }//////End of While
         
-        System.out.println("Found link .. " + resultLinkString);    
+        System.out.println("Found link .. " + resultLinkString); 
+        System.out.println("\n");   
 
     }
 }
