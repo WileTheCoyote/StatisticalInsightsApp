@@ -44,6 +44,24 @@ public class StatisticalInsights {
         int thresholdInt = 0;   // numberThreshold converted to int - deafault at 0
         int statCol = 2;           
 
+    /******************************* UNFINISHED ***************************************************************/
+        /* Assure statsheet.com is up */
+        // Elements numOfResults = searchDoc.select("section#content.clearfix div.col.col12 > p");
+
+        Document searchDoc2 = Jsoup.connect("http://downforeveryoneorjustme.com/http://statsheet.com/").userAgent("Mozilla").timeout(6000).get();
+
+        //Element containsYN = searchDoc2.select("div#container");
+
+
+
+        // (text) :contains(not)"")
+        //:contains(text)
+
+        System.out.print(searchDoc2.select("div#container")); // NEED TO COMPLETE
+        System.out.print('\n');
+
+    /**********************************************************************************************************/
+
         /* Get command prompt arguments for Player's Name */
         /**************************************************/
         System.out.print(" First Name : ");
@@ -83,6 +101,8 @@ public class StatisticalInsights {
          a POST form), you will get a result page. Use result page
          URL to find player and their appropriate URL
          *****************************************************/
+
+
         String resultPageUrl;
         resultPageUrl = "http://statsheet.com/mcb/players/search?s=" + playerFirstName + "+" + playerLastName + "&i=1";
 
@@ -92,9 +112,6 @@ public class StatisticalInsights {
 
         String resultOffset = " p + p "; // original offset of results puts searchName on 1st result
         
-        //trying to validate that the website is up
-        Document searchDoc2 = Jsoup.connect("http://downforeveryoneorjustme.com/http://statsheet.com/").userAgent("Mozilla").timeout(6000).get();
-
 
     
         System.out.println("Found link .. " + resultPageUrl);
