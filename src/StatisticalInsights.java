@@ -74,7 +74,7 @@ public class StatisticalInsights {
         playerFirstName = nameScanner.nextLine();
         
         System.out.print(" Last Name : ");
-        Scanner lastNameScanner = new Scanner(System.in);
+        Scanner lastNameScanner = new Scanner(System.in); //TODO: potential resource leak
         playerLastName = lastNameScanner.nextLine();
         
         
@@ -94,7 +94,7 @@ public class StatisticalInsights {
                 //System.out.println("new first name: " + playerFirstName);
                 //.split(' ').join('_')
         }
-
+        http://statsheet.com/mcb/players/search?s=kevin+duran&i=1
 
         fullName = playerFirstName + " " + playerLastName;
         System.out.print('\n');
