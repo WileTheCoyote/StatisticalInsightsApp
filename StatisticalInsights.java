@@ -261,6 +261,14 @@ public class StatisticalInsights {
         Scanner statScanner = new Scanner(System.in);
         String statName = statScanner.nextLine();
         
+        
+        // Exit Program if no Arguments are given
+        if (statName.equals("")) {
+            System.out.println("*** ERROR *** You Didn't Enter A Stat : *** " +
+                               "\nEnter a Stat eg. Points" );
+            System.exit(0);
+        }
+        
         statToLookAt = statName;
         
         // Retrieve the number threshold so we can
@@ -268,8 +276,15 @@ public class StatisticalInsights {
         System.out.print("Enter Number Threshold : ");
         Scanner numScanner = new Scanner(System.in);
         String numThreshold = numScanner.nextLine();
+        
+        // Exit Program if no Arguments are given
+        if (numThreshold.equals("")) {
+            System.out.println("*** ERROR *** You Didn't Enter A Number Threshold *** " +
+                               "\nEnter a Number to compares stats To eg. 25" );
+            System.exit(0);
+        }
 
-
+        numberThreshold = numThreshold;
 
     }
 }
