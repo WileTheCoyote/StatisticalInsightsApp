@@ -285,6 +285,52 @@ public class StatisticalInsights {
         }
 
         numberThreshold = numThreshold;
+        
+        /*
+         *We now we have our statToLookAt and threshold value
+         *Check Stat and match it to its corresponding Stat Column
+         ******************************************/
+        
+        if (statToLookAt.equals("Points") || statToLookAt.equals("Pts") ||
+            statToLookAt.equals("Points ") || statToLookAt.equals("Pts "))
+        {
+            statToLookAt = "Points";
+            statCol = 3;
+        }
+        if (statToLookAt.equals("Assists") || statToLookAt.equals("Asts") ||
+            statToLookAt.equals("Assists ") || statToLookAt.equals("Asts "))
+        {
+            statToLookAt = "Assists";
+            statCol = 13;
+        }
+        if (statToLookAt.equals("Rebounds")|| statToLookAt.equals("Rebs") ||
+            statToLookAt.equals("Rebounds ")|| statToLookAt.equals("Rebs "))
+        {
+            statToLookAt = "Rebounds";
+            statCol = 12;
+        }
+        if (statToLookAt.equals("Steals")|| statToLookAt.equals("Stls")){
+            statToLookAt = "Steals";
+            statCol = 14;
+        }
+        if (statToLookAt.equals("Blocks")|| statToLookAt.equals("Blks")){
+            statToLookAt = "Blocks";
+            statCol = 15;
+        }
+        if (statToLookAt.equals("TOs")|| statToLookAt.equals("TO's")){
+            statCol = 16;
+        }
+        // Checked Stat and couldn't find match .. exiting
+        if (statCol == 2) {
+            System.out.println("*** ERROR *** Didn't Recognize Stat Name *** " +
+                               "\nEnter a Stat then a Number - eg. Rebounds 10" );
+            System.exit(0);
+        }
+        /************************************************/
+        
+        
+        // Printing Stat we found
+        System.out.println("  Stat Specified: " + statToLookAt + " COL:" + statCol);
 
     }
 }
