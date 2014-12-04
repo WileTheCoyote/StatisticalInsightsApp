@@ -331,6 +331,13 @@ public class StatisticalInsights {
         
         // Printing Stat we found
         System.out.println("  Stat Specified: " + statToLookAt + " COL:" + statCol);
+        
+        // No that we have safe inputs from the user
+        // use JSoup to conncet and retrieve url's html
+        Document playerHomePageDoc = Jsoup.connect(resultLinkString)
+        .userAgent("Mozilla").timeout(6000).get();
+        
+        
 
     }
 }
