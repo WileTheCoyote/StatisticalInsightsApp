@@ -355,7 +355,7 @@ public class StatisticalInsights {
             xxx = xxx + 1;
         }
         
-        GameStatsUrl = "http://statsheet.com" + gameStatsUrl;
+        gameStatsUrl = "http://statsheet.com" + gameStatsUrl;
         
         
         
