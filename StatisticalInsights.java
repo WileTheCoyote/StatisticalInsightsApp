@@ -254,7 +254,22 @@ public class StatisticalInsights {
         }//////End of While
         
         System.out.println("Found link .. " + resultLinkString); 
-        System.out.println("\n");   
+        // System.out.println("\n");
+        
+        // Retrieve Stat category name from user
+        System.out.print("Enter Stat Name : ");
+        Scanner statScanner = new Scanner(System.in);
+        String statName = statScanner.nextLine();
+        
+        statToLookAt = statName;
+        
+        // Retrieve the number threshold so we can
+        //  count games above the threshold
+        System.out.print("Enter Number Threshold : ");
+        Scanner numScanner = new Scanner(System.in);
+        String numThreshold = numScanner.nextLine();
+
+
 
     }
 }
