@@ -337,6 +337,27 @@ public class StatisticalInsights {
         Document playerHomePageDoc = Jsoup.connect(resultLinkString)
         .userAgent("Mozilla").timeout(6000).get();
         
+        // Once link to player page is found, parse html to find the
+        //  GameStats page where the individual game logs live, Name it GameStatsUrl
+        // ** need better variable names to describe whats going on
+        Elements gameStatsLink = playerHomePageDoc.select("section#content.clearfix div.col.col12 > ul > li + li > a");
+        String yyy = gameStatsLink.first().text();
+        
+        int xxx = 0;
+        for (Element link : gameStatsLink) {
+            
+            if (x == 0) {
+                String href = link.attr("href");
+                gameStatsUrl = href;
+                break;
+            }
+            
+            xxx = xxx + 1;
+        }
+        
+        GameStatsUrl = "http://statsheet.com" + gameStatsUrl;
+        
+        
         
 
     }
