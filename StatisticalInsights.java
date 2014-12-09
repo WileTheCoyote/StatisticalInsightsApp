@@ -278,6 +278,7 @@ public class StatisticalInsights {
         System.out.print("Enter Number Threshold : ");
         Scanner numScanner = new Scanner(System.in);
         String numThreshold = numScanner.nextLine();
+        System.out.println("________________________________________");
         
         // Exit Program if no Arguments are given
         if (numThreshold.equals("")) {
