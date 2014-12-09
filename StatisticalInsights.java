@@ -1,4 +1,6 @@
 
+
+
 //Jake White
 //Tommy Hoffmann
 //Ryan Smith
@@ -372,7 +374,81 @@ public class StatisticalInsights {
         // testing color 
 
         System.out.println(ANSI_RED + "This Text is red??" + ANSI_RESET);
-        System.out.println("Hopefully this isn't");        
+        System.out.println("Hopefully this isn't");
+        
+        // using JSoup to conncet and retrieve url's html
+        Document doc = Jsoup.connect(gameStatsUrl)
+        .userAgent("Mozilla").timeout(6000).get();
+        
+        playerName = "NA";
+        gameCounter = 0;
+        
+        playerName = "player name here";
+        
+        Elements GameRows = doc.select("div.wrapper form > table > thead + tbody > tr");
+        Elements playerNameAndNumber = doc.select("div.col.col12 table > tbody > tr  > td > a");
+        
+        String PNNselection = playerNameAndNumber.first().text();
+        
+        numOfGamesToCheck = GameRows.size();
+        
+        System.out.println("  Name and Number: " + PNNselection);
+        System.out.println("  Games in Season: " + numOfGamesToCheck);
+        
+        String row = " tr ";        // original row offset
+        int numOfGamesMissed = 0;
+        
+        while (x < numOfGamesToCheck) {
+            
+            String rowCounter = " + tr "; // move down one row
+            
+            Elements rowToLookAt = doc.select("div.wrapper form > table > thead + tbody >" + row + "> td");
+            
+            
+            String selection = rowToLookAt.get(statCol).text();
+            
+            // if stat (selection) is empty restart while look
+            if (selection.equals("")) {
+                //System.out.println("*** ERROR *** FOUND ");
+                row = row + rowCounter;
+                numOfGamesToCheck--;
+                numOfGamesMissed++;
+                continue;
+                
+                //System.exit(0);
+            }
+            
+            if (selection.equals("-")) {
+                System.out.println("*** ERROR *** dash Found ");
+                System.exit(0);
+            }
+            
+            
+            int i = Integer.parseInt(selection); // convert to Int
+            
+            thresholdInt = Integer.parseInt(numberThreshold); // convert to Int
+            
+            String thresholdCheck; // checks if the stat is above the threshold
+            
+            if (i > thresholdInt - 1){
+                
+                thresholdCheck = "yes";
+                gameCounter = gameCounter + 1;
+                
+            } else thresholdCheck = "no";
+            
+            x = x + 1;
+            
+            String message = ("***Game " + x + " ***");
+            
+            row = row + rowCounter;
+            
+            
+        }
+        System.out.println("  Missed :" + numOfGamesMissed + " Games");
+        System.out.println("\033[31m  " + gameCounter + " Games having " + thresholdInt + " " + statToLookAt + " or more \033[30m");
+        
+        
         
 
     }
