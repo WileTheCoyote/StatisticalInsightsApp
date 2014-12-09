@@ -255,8 +255,8 @@ public class StatisticalInsights {
         
         }//////End of While
         
-        System.out.println("Found link .. " + resultLinkString); 
-        // System.out.println("\n");
+        System.out.println("Found link .. " + resultLinkString);
+        System.out.println("\n");
         
         // Retrieve Stat category name from user
         System.out.print("Enter Stat Name : ");
@@ -331,9 +331,6 @@ public class StatisticalInsights {
         /************************************************/
         
         
-        // Printing Stat we found
-        System.out.println("  Stat Specified: " + statToLookAt + " COL:" + statCol);
-        
         // No that we have safe inputs from the user
         // use JSoup to conncet and retrieve url's html
         Document playerHomePageDoc = Jsoup.connect(resultLinkString)
@@ -359,7 +356,8 @@ public class StatisticalInsights {
         
         gameStatsUrl = "http://statsheet.com" + gameStatsUrl;
                 
-    /*************************** Text color manipulator variables *****************************************************/
+    /*************************** Text color manipulator variables ***************
+     **************************************/
         String ANSI_RESET = "\u001B[0m";        // called at end of string to reset to original text color
         String ANSI_BLACK = "\u001B[30m";
         String ANSI_RED = "\u001B[31m";         // called at begining of string to print text as red
@@ -369,12 +367,13 @@ public class StatisticalInsights {
         String ANSI_PURPLE = "\u001B[35m";
         String ANSI_CYAN = "\u001B[36m";
         String ANSI_WHITE = "\u001B[37m";
-    /********************************************************************************************************************/
+    /*****************************************************************************
+     ***************************************/
 
         // testing color 
 
-        System.out.println(ANSI_RED + "This Text is red??" + ANSI_RESET);
-        System.out.println("Hopefully this isn't");
+        //System.out.println(ANSI_RED + "This Text is red??" + ANSI_RESET);
+        //System.out.println("Hopefully this isn't");
         
         // using JSoup to conncet and retrieve url's html
         Document doc = Jsoup.connect(gameStatsUrl)
